@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $fillable = [
+        'category_id', 
         'title', 
         'publish_date', 
         'author', 
@@ -30,7 +31,7 @@ class Book extends Model
 
     public function owners()
     {
-        return $this->belongsToMany(User::class, 'owner', 'book_id', 'user_id');
+        return $this->belongsToMany(User::class, 'owners', 'book_id', 'user_id');
     }
 
     public function category()
