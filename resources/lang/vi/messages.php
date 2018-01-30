@@ -17,4 +17,12 @@
             <br>Da Nang Thành Phố',
         'title' => 'Tiêu đề của thẻ',
         'find_out_more' => 'Tìm hiểu thêm!',
+        'email' => 'Địa Chỉ Email',
+        'password' => 'Mật Khẩu',
+        'remember_me' => 'Nhớ tôi',
+        'forgot_pass' => 'Quên mật khẩu',
+        'name' => 'Tên',
+        'confirm_pass' => 'Xác nhận mật khẩu',
+        'reset_password' => 'Đặt lại mật khẩu',
+        'send_password_reset_link' => 'Gửi Mật khẩu Đặt lại',
     ];
