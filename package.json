@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "bootstrap": "^4.0.0",
+        "font-awesome": "^4.7.0",
         "popper.js": "^1.12.9",
         "startbootstrap-business-frontpage": "^4.0.0-beta",
         "startbootstrap-modern-business": "^4.0.0-beta"

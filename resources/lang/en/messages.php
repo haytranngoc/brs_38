@@ -17,4 +17,12 @@
             <br>Da Nang City',
         'title' => 'Card title',
         'find_out_more' => 'Find Out More!',
+        'email' => 'E-Mail Address',
+        'password' => 'Password',
+        'remember_me' => 'Remember Me',
+        'forgot_pass' => 'Forgot password',
+        'name' => 'Name',
+        'confirm_pass' => 'Confirm Password',
+        'reset_password' => 'Reset Password',
+        'send_password_reset_link' => 'Send Password Reset',
     ];
