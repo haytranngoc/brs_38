@@ -70,4 +70,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Activity::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->role;
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 }
