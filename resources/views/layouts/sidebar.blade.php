@@ -27,19 +27,19 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-users" aria-hidden="true"></i> Manage Users</a>
+                    <a href="{{ route('admin.users.index') }}"><i class="fa fa-users" aria-hidden="true"></i> @lang('messages.manage_user')</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-book" aria-hidden="true"></i> Manage Book<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-book" aria-hidden="true"></i> @lang('messages.manage_book')<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">Categories</a>
+                            <a href="#">@lang('messages.categories')</a>
                         </li>
                         <li>
-                            <a href="#">Book</a>
+                            <a href="#">@lang('messages.books')</a>
                         </li>
                         <li>
-                            <a href="#">Suggest</a>
+                            <a href="#">@lang('messages.suggests')</a>
                         </li>
                     </ul>
                 </li>

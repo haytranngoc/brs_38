@@ -35,6 +35,11 @@
                         </a>
 
                         <ul class="dropdown-menu">
+                            @if(Auth::check() && Auth::user()->isAdmin())
+                            <li>
+                                <a href="{{ route('admin.') }}">@lang('messages.dashbroad')</a>
+                            </li>
+                            @endif
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
