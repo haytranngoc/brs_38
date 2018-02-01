@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Storage;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
     protected $fillable = [
         'category_id', 
+        'images', 
         'title', 
         'publish_date', 
         'author', 
@@ -37,5 +39,10 @@ class Book extends Model
     public function category()
     {
     	return $this->belongsTo(Category::class);
+    }
+
+    public function getImagesPathAttribute()
+    {
+        return Storage::url(config('setting.images_path'). $this->images);
     }
 }

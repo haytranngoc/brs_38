@@ -6,6 +6,7 @@
     <title>@lang('messages.brs')</title>
     {{ Html::style('/css/app.css') }}
     {{ Html::style('/css/business-frontpage.css') }}
+    
 </head>
 <body>
     @include('layouts.header')
