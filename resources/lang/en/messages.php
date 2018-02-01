@@ -44,5 +44,6 @@
         'erroredit' => 'Update failed ',
         'deletesuccess' => 'Delete success',
         'errordelete' => 'Delete Fail ',
-        'not_found' => 'Not Found'
+        'not_found' => 'Not Found',
+        'submit' => 'Submit',
     ];

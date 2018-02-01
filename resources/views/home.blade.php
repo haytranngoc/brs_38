@@ -36,43 +36,24 @@
         <!-- /.row -->
 
         <div class="row">
+            @foreach($categories as $category)
             <div class="col-sm-4 my-4">
                 <div class="card">
-                    <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+                    <a href="{{ route('category.show', $category->id) }}"><img class="card-img-top" src="{{ $category->images_path }}" alt=""></a>
                     <div class="card-body">
-                        <h4 class="card-title">@lang('messages.title')</h4>
-                        <p class="card-text"></p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary">@lang('messages.find_out_more')</a>
+                        <h4 class="card-title">{{ $category->name }}</h4>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 my-4">
-                <div class="card">
-                    <img class="card-img-top" src="http://placehold.it/300x200" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">@lang('messages.title')</h4>
-                        <p class="card-text"></p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary">@lang('messages.find_out_more')</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4 my-4">
-                <div class="card">
-                    <img class="card-img-top" src="http://placehold.it/300x200" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">@lang('messages.title')</h4>
-                        <p class="card-text"></p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary">@lang('messages.find_out_more')</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+            
         </div>
     </div>
+    <nav>
+        <ul class="pagination">
+            
+            {{ $categories->links() }}
+        </ul>
+    </nav>
 
 @endsection
