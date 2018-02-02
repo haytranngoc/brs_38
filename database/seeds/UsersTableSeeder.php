@@ -13,11 +13,12 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         factory(App\Models\User::class, 5)->create();
+        factory(App\Models\Review::class, 5)->create();
+        factory(App\Models\Comment::class, 5)->create();
         $faker = Faker::create();
         $users = App\Models\User::pluck('id')->all();
         $books = App\Models\Book::pluck('id')->all();
         $categories = App\Models\Category::pluck('id')->all();
-        $reviews = App\Models\Review::pluck('id')->all();
         App\Models\User::all()->each(function ($user) use ($categories, $faker) { 
             $user->suggests()->attach(
                 $categories, 
@@ -49,30 +50,6 @@ class UsersTableSeeder extends Seeder
         });
         App\Models\User::all()->each(function ($user) use ($books, $faker) { 
             $user->owners()->attach($books); 
-        });
-        App\Models\User::all()->each(function ($user) use ($books, $faker) { 
-            $user->reviews()->attach(
-                $books, 
-                [
-                    'content' => $faker->realText,
-                ]
-            ); 
-        });
-        App\Models\User::all()->each(function ($user) use ($reviews, $faker) { 
-            $user->comments()->attach(
-                $reviews, 
-                [
-                    'content' => $faker->realText,
-                ]
-            ); 
-        });
-        App\Models\User::all()->each(function ($user) use ($reviews, $faker) { 
-            $user->comments()->attach(
-                $reviews, 
-                [
-                    'content' => $faker->realText,
-                ]
-            ); 
         });
     }
 }
