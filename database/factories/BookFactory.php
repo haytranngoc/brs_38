@@ -9,6 +9,6 @@ $factory->define(App\Models\Book::class, function (Faker $faker) {
         'publish_date' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'author' => $faker->name,
         'number_pages' => $faker->numberBetween(),
-        'images' => $faker->image(config('setting.images_path'),300, 200, null, false) ,
+        'images' => $faker->image('public/storage/images',300, 200, null, false) ,
     ];
 });

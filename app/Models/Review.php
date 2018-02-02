@@ -21,4 +21,19 @@ class Review extends Model
     {
     	return $this->morphMany(Activity::class, 'activitytable');
     }
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
+
+    public function commentReviews()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

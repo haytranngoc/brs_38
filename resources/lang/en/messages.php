@@ -15,7 +15,7 @@
         'address' => '<br>6F, Vinh Trung Plaza, 255~257 Hung Vuong Str
     		<br>Vinh Trung Ward, Thanh Khe District
             <br>Da Nang City',
-        'title' => 'Card title',
+        'title' => 'Title',
         'find_out_more' => 'Find Out More!',
         'email' => 'E-Mail Address',
         'password' => 'Password',
@@ -46,4 +46,8 @@
         'errordelete' => 'Delete Fail ',
         'not_found' => 'Not Found',
         'submit' => 'Submit',
+        'posted_on' => 'Posted on',
+        'author' => 'Author',
+        'number_of_pages' => 'Number Of Pages',
+        'owners' => 'Owner',
     ];
