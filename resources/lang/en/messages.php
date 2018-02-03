@@ -50,4 +50,8 @@
         'author' => 'Author',
         'number_of_pages' => 'Number Of Pages',
         'owners' => 'Owner',
+        'profile' => 'Profile',
+        'add_book' => 'Add Book',
+        'publish_date' => 'Publish Date',
+        'all_book' => 'All Book',
     ];

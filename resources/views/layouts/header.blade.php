@@ -20,27 +20,29 @@
                     <li class="nav-item"><a href="{{ route('login') }}">@lang('messages.login')</a></li>
                     <li class="nav-item"><a href="{{ route('register') }}">@lang('messages.register')</a></li>
                 @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu">
                             @if(Auth::check() && Auth::user()->isAdmin())
-                            <li>
-                                <a href="{{ route('admin.') }}">@lang('messages.dashbroad')</a>
+                            <li class="nav-item dropdown">
+                                <a class="dropdown-item" href="{{ route('admin.') }}">@lang('messages.dashbroad')</a>
                             </li>
                             @endif
-                            <li class="dropdown-item">
-                                <a href="{{ route('logout') }}"
+                            <li class="nav-item dropdown">
+                                <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">@lang('messages.profile')</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    Logout
+                                    @lang('messages.logout')
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
+                                {{ Form::open(['route' => 'logout', 'method' => 'POST', 'id' => 'logout-form']) }}
+                                {{ Form::close() }}
                             </li>
                         </ul>
                     </li>

@@ -17,6 +17,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/categories/{id}', 'CategoryController@show')->name('category.show');
 Route::resource('/books', 'BookController');
+Route::get('/books/{id}', 'BookController@show')->name('books.show');
+Route::resource('/users', 'UserController');
 
 Auth::routes();
 
