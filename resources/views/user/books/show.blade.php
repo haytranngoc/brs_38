@@ -18,13 +18,14 @@
           <!-- Preview Image -->
             <img class="img-fluid rounded" src="{{ $book->images_path }}" alt="">
             <hr>
+            
             <p>@lang('messages.posted_on'): {{ $book->publish_date }}</p>
             <p>@lang('messages.author'): {{ $book->author }}</p>
             <p>@lang('messages.number_of_pages'): {{ $book->number_pages }}</p>
             <p>@lang('messages.categories'): <a href="{{ route('category.show', $book->category->id) }}">{{ $book->category->name }}</a> </p>
             <p>@lang('messages.owners'):</p>
             @foreach($book->owners as $owner)
-                <strong><a href="#"> {{ $owner->name }}</a></strong>
+                <strong><a href="{{ route('users.show', $owner->id) }}"> {{ $owner->name }}</a></strong>
             @endforeach
 
             <hr>
@@ -61,6 +62,7 @@
                     </div>
                 </div>
             @endforeach
+            </div>
 
         </div>
 
