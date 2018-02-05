@@ -12,18 +12,13 @@ class Category extends Model
         'images',
     ];
 
-    public function suggests()
-    {
-    	return $this->belongsToMany(User::class, 'suggests', 'category_id', 'user_id')->withPivot('title', 'author', 'description', 'link', 'status');
-    }
-
     public function books()
     {
     	return $this->hasMany(Book::class);
     }
 
-    public function getImagesPathAttribute()
+    public function getImagesAttribute($value)
     {
-        return Storage::url(config('setting.images_path'). $this->images);
+        return asset(config('setting.images_path') . '/' . $value);
     }
 }

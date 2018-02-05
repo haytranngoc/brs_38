@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Book;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -96,5 +97,25 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function suggests($id)
+    {
+        try {
+            $user = auth()->user();
+            $books = DB::table('books')
+                ->join('suggests', 'books.id', '=', 'suggests.book_id')
+                ->join('owners', 'books.id', '=', 'owners.book_id')
+                ->where('suggests.status', '=', config('setting.zero'))
+                ->where('owners.user_id', $user->id)
+                ->select('suggests.id as suggest_id', 'books.*')
+                ->get();
+            
+            return view('user.users.suggest', compact('user', 'books'));
+        } catch (Exception $e) {
+            Session::flash('fails', trans('messages.not_found'));
+
+            return back();
+        }
     }
 }

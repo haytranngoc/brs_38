@@ -46,8 +46,18 @@ class Book extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function getImagesPathAttribute()
+    public function suggests()
     {
-        return Storage::url(config('setting.images_path'). $this->images);
+        return $this->belongsToMany(User::class, 'suggests', 'book_id', 'user_id')->withPivot('status');
+    }
+
+    public function book_suggests()
+    {
+        return $this->hasMany(Suggest::class);
+    }
+
+    public function getImagesAttribute($value)
+    {
+        return asset(config('setting.images_path') . '/' . $value);
     }
 }

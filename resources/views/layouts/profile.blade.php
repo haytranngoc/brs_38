@@ -19,7 +19,7 @@
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse">@lang('messages.book')</a>
+                    <a href="{{ route('user.suggests', $user->id) }}">@lang('messages.suggests')</a>
                 </li>
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse">@lang('messages.profile')</a>
@@ -28,7 +28,6 @@
         </nav>
         @yield('content')
     </div>
-    @include('layouts.footer')
     {{ Html::script('js/app.js') }}
 
 </body>

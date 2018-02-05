@@ -17,8 +17,8 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
-                    <li class="nav-item"><a href="{{ route('login') }}">@lang('messages.login')</a></li>
-                    <li class="nav-item"><a href="{{ route('register') }}">@lang('messages.register')</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">@lang('messages.login')</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">@lang('messages.register')</a></li>
                 @else
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">

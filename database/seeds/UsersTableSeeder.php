@@ -19,18 +19,6 @@ class UsersTableSeeder extends Seeder
         $users = App\Models\User::pluck('id')->all();
         $books = App\Models\Book::pluck('id')->all();
         $categories = App\Models\Category::pluck('id')->all();
-        App\Models\User::all()->each(function ($user) use ($categories, $faker) { 
-            $user->suggests()->attach(
-                $categories, 
-                [
-                    'title' => $faker->word(), 
-                    'author' => $faker->name(),
-                    'description' => $faker->realText,
-                    'link' => $faker->url,
-                    'status' => $faker->numberBetween(0,1),
-                ]
-            ); 
-        });
         App\Models\User::all()->each(function ($user) use ($books, $faker) { 
             $user->ratings()->attach(
                 $books, 
