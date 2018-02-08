@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Book;
+use App\Models\Suggest;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -106,12 +107,33 @@ class UserController extends Controller
             $books = DB::table('books')
                 ->join('suggests', 'books.id', '=', 'suggests.book_id')
                 ->join('owners', 'books.id', '=', 'owners.book_id')
-                ->where('suggests.status', '=', config('setting.zero'))
+                ->where('suggests.status', config('setting.zero'))
                 ->where('owners.user_id', $user->id)
-                ->select('suggests.id as suggest_id', 'books.*')
+                ->select('suggests.id as suggest_id', 'suggests.status', 'books.*')
+                ->get();
+            $confirms = Suggest::with('book', 'user')
+                ->where('suggests.status', config('setting.one'))
+                ->where('suggests.owner_id', $user->id)
                 ->get();
             
-            return view('user.users.suggest', compact('user', 'books'));
+            return view('user.users.suggest', compact('user', 'books', 'confirms'));
+        } catch (Exception $e) {
+            Session::flash('fails', trans('messages.not_found'));
+
+            return back();
+        }
+    }
+
+    public function borrowed($id)
+    {
+        try {
+            $user = auth()->user();
+            $giveBacks = Suggest::with('book', 'user')
+                ->where('suggests.status', config('setting.two'))
+                ->where('suggests.user_id', $user->id)
+                ->get();
+            
+            return view('user.users.borrowed', compact('user', 'giveBacks'));
         } catch (Exception $e) {
             Session::flash('fails', trans('messages.not_found'));
 

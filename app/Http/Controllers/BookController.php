@@ -39,9 +39,10 @@ class BookController extends Controller
      */
     public function create()
     {
+        $user = auth()->user();
         $categories = Category::pluck('name', 'id');
 
-        return view('user.books.create', compact('categories'));
+        return view('user.books.create', compact('categories', 'user'));
     }
 
     /**
@@ -66,7 +67,7 @@ class BookController extends Controller
             $book->owners()->attach($user);
             Session::flash('success', trans('messages.createsucces'));
 
-            return redirect()->route('books.index');
+            return redirect()->route('users.show', $user);
         } catch (Exception $e) {
             Session::flash('fails', trans('messages.errorfail'));
             
@@ -83,9 +84,14 @@ class BookController extends Controller
     public function show($id)
     {
         try {
+            $user = auth()->user();
             $book = Book::with(['bookReviews.user', 'owners'])->findOrFail($id);
+            if($user) {
+                $checkOwner = $user->owners()->get()->pluck('id')->toArray();
+                $checkSuggest = $user->suggests()->get()->pluck('id')->toArray();
+            }
 
-            return view('user.books.show', compact('book', 'users'));
+            return view('user.books.show', compact('book', 'checkOwner', 'checkSuggest'));
         } catch (Exception $e) {
             Session::flash('success', trans('messages.not_found'));
 

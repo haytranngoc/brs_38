@@ -19,10 +19,13 @@
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="{{ route('user.suggests', $user->id) }}">@lang('messages.suggests')</a>
+                    <a href="{{ route('users.show', $user->id) }}">@lang('messages.book')</a>
                 </li>
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse">@lang('messages.profile')</a>
+                    <a href="{{ route('users.suggests', $user->id) }}">@lang('messages.suggests')</a>
+                </li>
+                <li class="active">
+                    <a href="{{ route('users.borrowed', $user->id) }}">@lang('messages.borrowed')</a>
                 </li>
             </ul>
         </nav>

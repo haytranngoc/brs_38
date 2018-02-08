@@ -5,8 +5,8 @@
  */
 .business-header {
   height: 50vh;
-  min-height: 300px;
-  background: url('/images/background.jpg') center center no-repeat scroll;
+  min-height: 500px;
+  background: url('/images/background.jpeg') center center no-repeat scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;

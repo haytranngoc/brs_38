@@ -3,36 +3,38 @@
 @section('content')
 
     <div class="container">
-
+        @include('layouts.session')
           <!-- Page Heading/Breadcrumbs -->
-        <h1 class="mt-4 mb-3">@lang('messages.title'):
+        <h5 class="mt-4 mb-3">@lang('messages.title'):
             <small>
                 <a href="#">{{ $book->title }}</a>
             </small>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">@lang('messages.borrow_book')</button>
-        </h1>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        @lang('messages.question3')
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('messages.close')</button>
-                        {!! Form::open(['route' => ['books.suggests', 'id' => $book->id]]) !!}
-                            {{ Form::submit(trans('messages.submit'), ['class' => 'btn btn-primary']) }}
-                        {!! Form::close() !!}
+            @if(Auth::check() && !in_array($book->id, $checkOwner) && !in_array($book->id, $checkSuggest))
+                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">@lang('messages.borrow_book')</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @lang('messages.question3')
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('messages.close')</button>
+                                {!! Form::open(['route' => ['books.suggests', 'id' => $book->id]]) !!}
+                                    {{ Form::submit(trans('messages.submit'), ['class' => 'btn btn-primary']) }}
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            @endif
+        </h5>
+
+        <!-- Modal -->
 
         <div class="row">
 

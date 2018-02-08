@@ -50,9 +50,8 @@
         </div>
     </div>
     <nav>
-        <ul class="pagination">
-            
-            {{ $categories->links() }}
+        <ul class="pagination justify-content-center">
+            {{ $categories->links('pagination::bootstrap-4') }}
         </ul>
     </nav>
 
