@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Book;
-use Auth;
+use App\Models\Review;
+use App\Models\User;
+use App\Models\Suggest;
 use Session;
 use App\Traits\UploadImagesTrait;
 use App\Http\Requests\BookRequest;
+use App\Http\Requests\ReviewRequest;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -16,7 +19,7 @@ class BookController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'show']);
     }
 
     /**
@@ -50,7 +53,7 @@ class BookController extends Controller
     public function store(BookRequest $request)
     {
         try {
-            $user = Auth::user()->id;
+            $user = auth()->user()->id;
             $data = $request->only([
                 'category_id', 
                 'title', 
@@ -80,9 +83,9 @@ class BookController extends Controller
     public function show($id)
     {
         try {
-            $book = Book::with('bookReviews.user')->findOrFail($id);
+            $book = Book::with(['bookReviews.user', 'owners'])->findOrFail($id);
 
-            return view('user.books.show', compact('book'));
+            return view('user.books.show', compact('book', 'users'));
         } catch (Exception $e) {
             Session::flash('success', trans('messages.not_found'));
 
@@ -132,5 +135,37 @@ class BookController extends Controller
 
             return back();
         }
+    }
+
+    public function review(ReviewRequest $request, $id)
+    {
+        try {
+            $user = auth()->user();
+            $data = $request->only(['content']);
+            $data['user_id'] = $user->id;
+            $data['book_id'] = $id;
+            $review = Review::create($data);
+            Session::flash('success', trans('messages.createsucces'));
+        } catch (Exception $e) {
+            Session::flash('fails', trans('messages.errorfail'));
+        }
+
+        return back();
+    }
+
+    public function suggest(Request $request, $id)
+    {
+        try {
+            $user = auth()->user();
+            $data = $request->only(['status']);
+            $data['user_id'] = $user->id;
+            $data['book_id'] = $id;
+            $suggest = Suggest::create($data);
+            Session::flash('success', trans('messages.createsucces'));
+        } catch (Exception $e) {
+            Session::flash('fails', trans('messages.errorfail'));
+        }
+
+        return back();
     }
 }

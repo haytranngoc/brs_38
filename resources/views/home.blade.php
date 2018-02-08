@@ -39,7 +39,7 @@
             @foreach($categories as $category)
             <div class="col-sm-4 my-4">
                 <div class="card">
-                    <a href="{{ route('category.show', $category->id) }}"><img class="card-img-top" src="{{ $category->images_path }}" alt=""></a>
+                    <a href="{{ route('category.show', $category->id) }}"><img class="card-img-top" src="{{ $category->images }}" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">{{ $category->name }}</h4>
                     </div>

@@ -53,7 +53,7 @@ class User extends Authenticatable
     
     public function suggests()
     {
-        return $this->belongsToMany(Category::class, 'suggests', 'user_id', 'category_id')->withPivot('title', 'author', 'description', 'link', 'status');
+        return $this->belongsToMany(Book::class, 'suggests', 'user_id', 'book_id')->withPivot('status');
     }
 
     public function comments()
@@ -69,6 +69,11 @@ class User extends Authenticatable
     public function activities()
     {
         return $this->hasMany(Activity::class);
+    }
+
+    public function suggest_users()
+    {
+        return $this->hasMany(Suggest::class);
     }
 
     public function isAdmin()
